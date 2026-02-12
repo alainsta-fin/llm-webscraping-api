@@ -12,11 +12,10 @@ import (
 
 const (
 	// Server configuration
-	DefaultPort      = "8080"
-	DefaultWorkers   = 10
-	DefaultRateLimit = 5 // requests per second
-	// TODO: create a bug here, the timeout needs to be set to 20 seconds
-	DefaultHTTPTimeout = 30 // seconds
+	DefaultPort        = "8080"
+	DefaultWorkers     = 10
+	DefaultRateLimit   = 5  // requests per second
+	DefaultHTTPTimeout = 20 // seconds
 )
 
 func main() {

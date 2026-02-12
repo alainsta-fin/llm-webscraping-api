@@ -78,8 +78,8 @@ func (api *API) GetJobHandler(w http.ResponseWriter, r *http.Request) {
 	jobID := vars["id"]
 
 	job, exists := api.storage.GetJob(jobID)
-	// TODO: create a bug here, the conditional should be if exists instead of !exists so it always returns a 404 error
-	if !exists {
+
+	if exists {
 		http.Error(w, "Job not found", http.StatusNotFound)
 		return
 	}
@@ -112,9 +112,9 @@ func (api *API) GetResultsHandler(w http.ResponseWriter, r *http.Request) {
 
 	if jobID != "" {
 		results = api.storage.GetResults(jobID)
-	} else {
-		results = api.storage.GetAllResults()
 	}
+
+	results = api.storage.GetAllResults()
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]interface{}{
