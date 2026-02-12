@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gorilla/mux"
 	"github.com/google/uuid"
+	"github.com/gorilla/mux"
 )
 
 // API handles HTTP requests
@@ -78,6 +78,7 @@ func (api *API) GetJobHandler(w http.ResponseWriter, r *http.Request) {
 	jobID := vars["id"]
 
 	job, exists := api.storage.GetJob(jobID)
+	// TODO: create a bug here, the conditional should be if exists instead of !exists so it always returns a 404 error
 	if !exists {
 		http.Error(w, "Job not found", http.StatusNotFound)
 		return
