@@ -12,9 +12,10 @@ import (
 
 const (
 	// Server configuration
-	DefaultPort        = "8080"
-	DefaultWorkers     = 10
-	DefaultRateLimit   = 5  // requests per second
+	DefaultPort      = "8080"
+	DefaultWorkers   = 10
+	DefaultRateLimit = 5 // requests per second
+	// BUG HERE..should be 30 seconds
 	DefaultHTTPTimeout = 20 // seconds
 )
 

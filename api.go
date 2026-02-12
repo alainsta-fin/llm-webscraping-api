@@ -78,7 +78,7 @@ func (api *API) GetJobHandler(w http.ResponseWriter, r *http.Request) {
 	jobID := vars["id"]
 
 	job, exists := api.storage.GetJob(jobID)
-
+	// BUG HERE...should be !exists instead of exists...if job does not exist, return 404
 	if exists {
 		http.Error(w, "Job not found", http.StatusNotFound)
 		return
@@ -110,6 +110,7 @@ func (api *API) GetResultsHandler(w http.ResponseWriter, r *http.Request) {
 
 	var results []ScrapeResult
 
+	// BUG HERE...results get overwritten by GetAllResults() even if jobID is provided...second results needs to be wrapped in an else
 	if jobID != "" {
 		results = api.storage.GetResults(jobID)
 	}
