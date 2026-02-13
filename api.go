@@ -139,7 +139,6 @@ func (api *API) SetupRoutes() *mux.Router {
 
 	// API routes
 	router.HandleFunc("/api/health", api.HealthHandler).Methods("GET")
-	router.HandleFunc("/api/jobs", api.CreateJobHandler).Methods("POST")
 	router.HandleFunc("/api/jobs", api.ListJobsHandler).Methods("GET")
 	router.HandleFunc("/api/jobs/{id}", api.GetJobHandler).Methods("GET")
 	router.HandleFunc("/api/results", api.GetResultsHandler).Methods("GET")
