@@ -75,6 +75,7 @@ func main() {
 		log.Printf("Server forced to shutdown: %v", err)
 	}
 
+	// BUG HERE..remove pool.stop()
 	// Stop worker pool
 	pool.Stop()
 	log.Println("Worker pool stopped")

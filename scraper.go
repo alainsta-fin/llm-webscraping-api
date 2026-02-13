@@ -162,8 +162,8 @@ func (s *Scraper) extractLinks(html, baseURL string) []string {
 
 			// Skip anchors, javascript, and mailto links
 			if strings.HasPrefix(link, "#") ||
-			   strings.HasPrefix(link, "javascript:") ||
-			   strings.HasPrefix(link, "mailto:") {
+				strings.HasPrefix(link, "javascript:") ||
+				strings.HasPrefix(link, "mailto:") {
 				continue
 			}
 
@@ -177,10 +177,12 @@ func (s *Scraper) extractLinks(html, baseURL string) []string {
 			}
 
 			// Avoid duplicates
+			// BUG HERE...remove !seen[link]
 			if !seen[link] && (strings.HasPrefix(link, "http://") || strings.HasPrefix(link, "https://")) {
 				seen[link] = true
 				links = append(links, link)
 
+				// Bug Here...remove number of links
 				// Limit number of links
 				if len(links) >= 50 {
 					break
